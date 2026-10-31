@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# Database & SQLite
+*.db
+*.sqlite3
+instance/*.db
+
+# Storage & Temporary Files
+storage/candidates/*
+!storage/candidates/.gitkeep
+storage/backups/*
+!storage/backups/.gitkeep
+storage/temp/*
+!storage/temp/.gitkeep
+
+# Environment
+.env
+
+# Node & Frontend
+node_modules/
+dist/
+.vite/
+*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp

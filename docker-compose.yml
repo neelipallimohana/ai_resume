@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: resume_management_app
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - PRODUCTION=1
+      - PORT=5000
+      - MONGO_URI=mongodb://mongodb:27017/resume_management
+      - SECRET_KEY=${SECRET_KEY:-production-secret-change-me-32chars}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-nvidia/nemotron-3-ultra-550b-a55b:free}
+    volumes:
+      - resume_storage:/app/storage
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:7.0
+    container_name: resume_management_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
+  resume_storage:

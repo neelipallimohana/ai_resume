@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: resume-management-system
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: bash build.sh
+    startCommand: python run.py --prod
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: PRODUCTION
+        value: "1"
+      - key: MONGO_URI
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: OPENROUTER_MODEL
+        value: "nvidia/nemotron-3-ultra-550b-a55b:free"
